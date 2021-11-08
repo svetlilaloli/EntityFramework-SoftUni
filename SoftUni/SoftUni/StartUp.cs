@@ -11,7 +11,7 @@ namespace SoftUni
 {
     public class StartUp
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             using var context = new SoftUniContext();
             //Console.WriteLine(GetEmployeesFullInformation(context));
@@ -27,13 +27,13 @@ namespace SoftUni
             //Console.WriteLine(GetEmployeesByFirstNameStartingWithSa(context));
             //Console.WriteLine(DeleteProjectById(context));
             Console.WriteLine(RemoveTown(context));
-            //var employee = GetEmployee();
-            //var dbContext = new SoftUniContext();
-            //employee.FirstName = "Marty";
+            
+			//change state
             //var entry = dbContext.Entry(employee);
             //entry.State = EntityState.Modified;
             //dbContext.SaveChanges();
         }
+		// Task 3
         public static string GetEmployeesFullInformation(SoftUniContext context)
         {
             var employees = context.Employees.OrderBy(x => x.EmployeeId)
@@ -47,6 +47,7 @@ namespace SoftUni
             }
             return sb.ToString();
         }
+		// Task 4
         public static string GetEmployeesWithSalaryOver50000(SoftUniContext context)
         {
             var salary = 50000;
@@ -63,6 +64,7 @@ namespace SoftUni
             }
             return sb.ToString();
         }
+		// Task 5
         public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
         {
             var department = "Research and Development";
@@ -80,6 +82,7 @@ namespace SoftUni
             }
             return sb.ToString();
         }
+		// Task 6
         public static string AddNewAddressToEmployee(SoftUniContext context)
         {
             var address = new Models.Address
@@ -107,6 +110,7 @@ namespace SoftUni
 
             return sb.ToString();
         }
+		// Task 7
         public static string GetEmployeesInPeriod(SoftUniContext context)
         {
             StringBuilder content = new StringBuilder();
@@ -137,6 +141,7 @@ namespace SoftUni
 
             return content.ToString().TrimEnd();
         }
+		// Task 8
         public static string GetAddressesByTown(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -157,6 +162,7 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+		// Task 9
         public static string GetEmployee147(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -175,6 +181,7 @@ namespace SoftUni
             }
             return sb.ToString().TrimEnd();
         }
+		// Task 10
         public static string GetDepartmentsWithMoreThan5Employees(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -196,6 +203,7 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+		// Task 11
         public static string GetLatestProjects(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -216,6 +224,7 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+		// Task 12
         public static string IncreaseSalaries(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -238,6 +247,7 @@ namespace SoftUni
             }
             return sb.ToString().TrimEnd();
         }
+		// Task 13
         public static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -254,6 +264,7 @@ namespace SoftUni
 
             return sb.ToString().TrimEnd();
         }
+		// Task 14
         public static string DeleteProjectById(SoftUniContext context)
         {
             StringBuilder sb = new StringBuilder();
@@ -276,6 +287,7 @@ namespace SoftUni
             }
             return sb.ToString().TrimEnd();
         }
+		// Task 15
         public static string RemoveTown(SoftUniContext context)
         {
             string result;
@@ -303,10 +315,5 @@ namespace SoftUni
 
             return result;
         }
-        //public static Employee GetEmployee()
-        //{
-        //    using var context = new SoftUniContext();
-        //    return context.Employees.First();
-        //}
     }
 }
