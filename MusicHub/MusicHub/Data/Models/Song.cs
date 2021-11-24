@@ -25,7 +25,7 @@ namespace MusicHub.Data.Models
         [Required]
         public Genre Genre { get; set; }
         [ForeignKey(nameof(Album))]
-        public int AlbumId { get; set; }
+        public int? AlbumId { get; set; }
         public virtual Album Album { get; set; }
         [Required]
         [ForeignKey(nameof(Writer))]
