@@ -17,7 +17,7 @@
 
             //Test your solutions here
             //Console.WriteLine(ExportAlbumsInfo(context, 9));
-            Console.WriteLine(ExportSongsAboveDuration(context, 300));
+            Console.WriteLine(ExportSongsAboveDuration(context, 120));
         }
 
         public static string ExportAlbumsInfo(MusicHubDbContext context, int producerId)
@@ -45,29 +45,41 @@
                 result.AppendLine($"-AlbumPrice: {album.Price:f2}");
             }
 
-            return result.ToString().TrimEnd();
+            return result.ToString().Trim();
         }
 
         public static string ExportSongsAboveDuration(MusicHubDbContext context, int duration)
         {
             StringBuilder result = new StringBuilder();
 
-            var songs = context.Songs.Where(s => s.Duration.TotalSeconds > duration).ToList();
+            var songs = context.Songs.Where(s => s.Duration > new TimeSpan(0, 0, 0, duration))
+                                     .Select(s => new
+                                     {
+                                         s.Name,
+                                         s.Duration,
+                                         WriterName = s.Writer.Name,
+                                         ProducerName = s.Album.Producer.Name,
+                                         PerformerName = s.SongPerformers.FirstOrDefault() == null ? "" : s.SongPerformers.FirstOrDefault().Performer.FirstName + ' ' + s.SongPerformers.FirstOrDefault().Performer.LastName
+                                     })
+                                     .OrderBy(s => s.Name)
+                                     .ThenBy(s => s.WriterName)
+                                     .ThenBy(s => s.PerformerName)
+                                     .ToList();
 
             int songNum = 1;
-            foreach (var song in songs.OrderBy(s => s.Name).ThenBy(s => s.Writer.Name).ThenBy(s => s.SongPerformers.FirstOrDefault()))
+            foreach (var song in songs)
             {
                 result.AppendLine($"-Song #{songNum}");
                 result.AppendLine($"---SongName: {song.Name}");
-                result.AppendLine($"---Writer: {song.Writer.Name}");
-                result.AppendLine($"---Performer: {song.SongPerformers.FirstOrDefault().Performer.FirstName} {song.SongPerformers.FirstOrDefault().Performer.LastName}");
-                result.AppendLine($"---AlbumProducer: {song.Album.Producer.Name}");
+                result.AppendLine($"---Writer: {song.WriterName}");
+                result.AppendLine($"---Performer: {song.PerformerName}");
+                result.AppendLine($"---AlbumProducer: {song.ProducerName}");
                 result.AppendLine($"---Duration: {song.Duration:c}");
 
                 songNum++;
             }
 
-            return result.ToString().TrimEnd();
+            return result.ToString().Trim();
         }
     }
 }
