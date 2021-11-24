@@ -1,1 +1,1 @@
-Problem description is in the wiki.
+Problem descriptions are in the wiki.
