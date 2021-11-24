@@ -8,7 +8,7 @@ namespace FootballBookmakerSystem
     {
         static void Main(string[] args)
         {
-            using FootballBettingContext dbContext = new FootballBettingContext();
+            FootballBettingContext dbContext = new FootballBettingContext();
             dbContext.Database.Migrate();
             Console.WriteLine("Database created successfully");
             //dbContext.Database.EnsureCreated();

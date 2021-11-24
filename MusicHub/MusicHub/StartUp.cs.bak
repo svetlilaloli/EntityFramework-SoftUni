@@ -10,7 +10,7 @@
     {
         public static void Main(string[] args)
         {
-            using MusicHubDbContext context = 
+            MusicHubDbContext context = 
                 new MusicHubDbContext();
 
             //DbInitializer.ResetDatabase(context);

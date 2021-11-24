@@ -8,7 +8,7 @@ namespace StudentSystem
     {
         public static void Main(string[] args)
         {
-            using StudentSystemContext dbContext = new StudentSystemContext();
+            StudentSystemContext dbContext = new StudentSystemContext();
             dbContext.Database.Migrate();
             //dbContext.Database.EnsureCreated();
 
