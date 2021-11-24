@@ -2,6 +2,6 @@
 {
     internal class Configuration
     {
-        internal const string CONNECTION_STRING = @"Server=DESKTOP-78U67DV;Database=StudentSystem;Integrated Security=true";
+        internal const string CONNECTION_STRING = @"Server=.;Database=StudentSystem;Integrated Security=true";
     }
 }
