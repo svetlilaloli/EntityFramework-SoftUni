@@ -7,12 +7,12 @@ namespace P01_HospitalDatabase.Data.Models
     {
         public Medicament()
         {
-            PatientMedicaments = new HashSet<PatientMedicament>();
+            Prescriptions = new HashSet<PatientMedicament>();
         }
         [Key]
         public int MedicamentId { get; set; }
         [StringLength(50), Required]
         public string Name { get; set; }
-        public ICollection<PatientMedicament> PatientMedicaments { get; set; }
+        public ICollection<PatientMedicament> Prescriptions { get; set; }
     }
 }

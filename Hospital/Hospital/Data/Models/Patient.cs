@@ -9,7 +9,7 @@ namespace P01_HospitalDatabase.Data.Models
         {
             Visitations = new HashSet<Visitation>();
             Diagnoses = new HashSet<Diagnose>();
-            PatientMedicaments = new HashSet<PatientMedicament>();
+            Prescriptions = new HashSet<PatientMedicament>();
         }
         [Key]
         public int PatientId { get; set; }
@@ -25,7 +25,6 @@ namespace P01_HospitalDatabase.Data.Models
         public bool HasInsurance { get; set; }
         public ICollection<Visitation> Visitations { get; set; }
         public ICollection<Diagnose> Diagnoses { get; set; }
-        public ICollection<PatientMedicament> PatientMedicaments { get; set; }
-
+        public ICollection<PatientMedicament> Prescriptions { get; set; }
     }
 }
