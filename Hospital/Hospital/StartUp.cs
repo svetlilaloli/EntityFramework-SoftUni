@@ -7,11 +7,11 @@ namespace P01_HospitalDatabase
     {
         public static void Main(string[] args)
         {
-            using var context = new HospitalContext();   
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-            
-            Console.WriteLine();
+            using var context = new HospitalContext();
+            //context.Database.EnsureDeleted();
+            //context.Database.EnsureCreated();
+
+            Console.WriteLine("Database created");
         }
     }
 }

@@ -26,10 +26,7 @@ namespace P01_HospitalDatabase.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PatientMedicament>(entity =>
-            {
-                entity.HasKey(key => new { key.PatientId, key.MedicamentId });
-            });
+            modelBuilder.Entity<PatientMedicament>().HasKey(key => new { key.PatientId, key.MedicamentId });
         }
     }
 }

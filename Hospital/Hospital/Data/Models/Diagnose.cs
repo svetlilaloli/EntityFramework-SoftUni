@@ -11,7 +11,7 @@ namespace P01_HospitalDatabase.Data.Models
         public string Name { get; set; }
         [StringLength(250)]
         public string Comments { get; set; }
-        [ForeignKey(nameof(Patient))]
+        [ForeignKey(nameof(Patient)), Required]
         public int PatientId { get; set;}
         public Patient Patient { get; set; }
     }
