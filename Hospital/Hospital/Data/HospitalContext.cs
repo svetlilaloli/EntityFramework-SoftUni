@@ -26,6 +26,7 @@ namespace P01_HospitalDatabase.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Patient>().Property(p => p.Email).IsUnicode(false);
             modelBuilder.Entity<PatientMedicament>().HasKey(key => new { key.PatientId, key.MedicamentId });
         }
     }
