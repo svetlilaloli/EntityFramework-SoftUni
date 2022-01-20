@@ -9,12 +9,12 @@ namespace P03_SalesDatabase
     {
         public static void Main(string[] args)
         {
-            using SalesContext context = new SalesContext();
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            //using SalesContext context = new SalesContext();
+            //context.Database.EnsureDeleted();
+            //context.Database.EnsureCreated();
 
-            Console.WriteLine("Sales database created!");
-            SeedDatabase(context);
+            //Console.WriteLine("Sales database created!");
+            //SeedDatabase(context);
         }
         private static void SeedDatabase(SalesContext context)
         {
