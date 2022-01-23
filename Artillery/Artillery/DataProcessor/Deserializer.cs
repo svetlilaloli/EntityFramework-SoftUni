@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -13,7 +12,6 @@
     using Artillery.DataProcessor.ImportDto;
     using AutoMapper;
     using Newtonsoft.Json;
-    using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
     public class Deserializer
     {
