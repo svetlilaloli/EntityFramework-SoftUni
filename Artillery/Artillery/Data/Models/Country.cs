@@ -12,9 +12,9 @@ namespace Artillery.Data.Models
         }
         [Key]
         public int Id { get; set; }
-        [StringLength(60, MinimumLength =4), Required]
+        [MinLength(Constants.MinCountryNameLength), MaxLength(Constants.MaxCountryNameLength), Required]
         public string CountryName { get; set; }
-        [Range(50000, 10000000), Required]
+        [Range(Constants.MinArmySize, Constants.MaxArmySize), Required]
         public int ArmySize { get; set; }
         public ICollection<CountryGun> CountriesGuns { get; set; }
     }

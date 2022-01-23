@@ -20,7 +20,7 @@ namespace Artillery.Data.Models
         public int GunWeight { get; set; }
         [Range(2.00, 35.00), Required]
         public double BarrelLength { get; set; }
-        public int NumberBuild { get; set; }
+        public int? NumberBuild { get; set; }
         [Range(1, 100000), Required]
         public int Range { get; set; }
         [Required]

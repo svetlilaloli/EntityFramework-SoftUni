@@ -10,16 +10,15 @@
     {
         public static void Main(string[] args)
         {
-            var context = new ArtilleryContext();
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-            //Mapper.Initialize(config => config.AddProfile<ArtilleryProfile>());
+            using var context = new ArtilleryContext();
 
-            //ResetDatabase(context, shouldDropDatabase: true);
+            Mapper.Initialize(config => config.AddProfile<ArtilleryProfile>());
 
-            //var projectDir = GetProjectDirectory();
+            ResetDatabase(context, shouldDropDatabase: true);
 
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            var projectDir = GetProjectDirectory();
+
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 
             //ExportEntities(context, projectDir + @"ExportResults/");
 
