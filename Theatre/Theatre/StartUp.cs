@@ -13,40 +13,37 @@
         public static void Main(string[] args)
         {
             var context = new TheatreContext();
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-            Console.WriteLine("Database created");
-            //Mapper.Initialize(config => config.AddProfile<TheatreProfile>());
+            
+            Mapper.Initialize(config => config.AddProfile<TheatreProfile>());
 
-            //ResetDatabase(context, shouldDropDatabase: true);
+            ResetDatabase(context, shouldDropDatabase: true);
 
-            //var projectDir = GetProjectDirectory();
+            var projectDir = GetProjectDirectory();
 
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 
             //ExportEntities(context, projectDir + @"ExportResults/");
 
-            //using (var transaction = context.Database.BeginTransaction())
-            //{
-            //    transaction.Rollback();
-            //}
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                transaction.Rollback();
+            }
         }
 
         private static void ImportEntities(TheatreContext context, string baseDir, string exportDir)
         {
-            var theatersAndTickets =
-              DataProcessor.Deserializer.ImportPlays(context,
+            var plays = DataProcessor.Deserializer.ImportPlays(context,
                   File.ReadAllText(baseDir + "plays.xml"));
-            PrintAndExportEntityToFile(theatersAndTickets, exportDir + "Actual Result - ImportPlays.txt");
+            PrintAndExportEntityToFile(plays, exportDir + "Actual Result - ImportPlays.txt");
 
             var casts = DataProcessor.Deserializer.ImportCasts(context,
                File.ReadAllText(baseDir + "casts.xml"));
             PrintAndExportEntityToFile(casts, exportDir + "Actual Result - ImportCasts.txt");
 
-            var plays =
+            var theatersAndTickets =
                 DataProcessor.Deserializer.ImportTtheatersTickets(context,
                     File.ReadAllText(baseDir + "theatres-and-tickets.json"));
-            PrintAndExportEntityToFile(plays, exportDir + "Actual Result - ImportTheatresTickets.txt");
+            PrintAndExportEntityToFile(theatersAndTickets, exportDir + "Actual Result - ImportTheatresTickets.txt");
 
         }
 

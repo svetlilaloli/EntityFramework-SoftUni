@@ -12,7 +12,7 @@
         internal const float MIN_RATING = 0f;
         internal const float MAX_RATING = 10.00f;
         internal const int MAX_DESCRIPTION_LENGTH = 700;
-        internal const string DATE_FORMAT = @"{0:hh\:mm\:ss}";
+        internal const string TIME_FORMAT = @"{hh:mm:ss}";
         internal const string MIN_DURATION = "01:00";
         internal const string MAX_DURATION = "";
         // cast

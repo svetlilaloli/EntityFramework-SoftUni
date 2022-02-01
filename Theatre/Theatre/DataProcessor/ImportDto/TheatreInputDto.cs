@@ -1,23 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Theatre.Data.Models
+namespace Theatre.DataProcessor.ImportDto
 {
-    public class Theatre
+    public class TheatreInputDto
     {
-        public Theatre()
-        {
-            Tickets = new HashSet<Ticket>();
-        }
-        [Key]
-        public int Id { get; set; }
+        [JsonProperty("Name")]
         [MinLength(Constants.MIN_STRING_LENGTH), MaxLength(Constants.MAX_STRING_LENGTH), Required]
         public string Name { get; set; }
+        [JsonProperty("NumberOfHalls")]
         [Range(Constants.MIN_NUMBER, Constants.MAX_NUMBER), Required]
         public sbyte NumberOfHalls { get; set; }
+        [JsonProperty("Director")]
         [MinLength(Constants.MIN_STRING_LENGTH), MaxLength(Constants.MAX_STRING_LENGTH), Required]
         public string Director { get; set; }
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        [JsonProperty("Tickets")]
+        public List<TicketInputDto> Tickets { get; set; }
     }
 }

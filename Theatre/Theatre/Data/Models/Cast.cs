@@ -15,6 +15,6 @@ namespace Theatre.Data.Models
         public string PhoneNumber { get; set; }
         [ForeignKey(nameof(Play)), Required]
         public int PlayId { get; set; }
-        public Play Play { get; set; }
+        public virtual Play Play { get; set; }
     }
 }

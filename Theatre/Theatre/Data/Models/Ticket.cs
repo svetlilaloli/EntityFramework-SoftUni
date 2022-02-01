@@ -13,9 +13,9 @@ namespace Theatre.Data.Models
         public sbyte RowNumber { get; set; }
         [ForeignKey(nameof(Play)), Required]
         public int PlayId { get; set; }
-        public Play Play { get; set; }
+        public virtual Play Play { get; set; }
         [ForeignKey(nameof(Theatre)), Required]
         public int TheatreId { get; set; }
-        public Theatre Theatre { get; set; }
+        public virtual Theatre Theatre { get; set; }
     }
 }
