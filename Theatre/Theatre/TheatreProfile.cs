@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using Theatre.Data.Models;
+    using Theatre.DataProcessor.ExportDto;
     using Theatre.DataProcessor.ImportDto;
 
     class TheatreProfile : Profile
@@ -14,6 +15,11 @@
             CreateMap<CastInputDto, Cast>();
             CreateMap<TicketInputDto, Ticket>();
             CreateMap<TheatreInputDto, Theatre>();
+            // export
+            CreateMap<Ticket, TicketOutputDto>();
+            CreateMap<Theatre, TheatreOutputDto>();
+            CreateMap<ActorOutputDto, Cast>();
+            CreateMap<PlayOutputDto, Play>();
         }
     }
 }
