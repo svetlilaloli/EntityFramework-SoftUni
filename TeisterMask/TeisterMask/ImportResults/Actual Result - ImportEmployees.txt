@@ -44,11 +44,8 @@ Invalid data!
 Invalid data!
 Invalid data!
 Invalid data!
-Invalid data!
-Invalid data!
 Successfully imported employee - btorrejond with 9 tasks.
 Successfully imported employee - mdivere with 5 tasks.
-Invalid data!
 Invalid data!
 Invalid data!
 Successfully imported employee - tridolfif with 11 tasks.
@@ -77,7 +74,6 @@ Successfully imported employee - mobispom with 7 tasks.
 Invalid data!
 Successfully imported employee - lmarquissn with 9 tasks.
 Successfully imported employee - ocoolsono with 7 tasks.
-Invalid data!
 Invalid data!
 Successfully imported employee - jbehlingp with 13 tasks.
 Invalid data!

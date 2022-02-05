@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
     using System.IO;
@@ -74,7 +73,7 @@
                 }
 
 
-                var validTasks = new List<TaskInputDto>();
+                var validTasks = new HashSet<TaskInputDto>();
 
                 foreach (var taskDto in projectDto.Tasks)
                 {
@@ -130,16 +129,19 @@
 
                     }
 
-                    if (!Enum.IsDefined(typeof(ExecutionType), taskDto.ExecutionType) || !Enum.IsDefined(typeof(LabelType), taskDto.LabelType))
+                    var isExecutionTypeValid = Enum.TryParse(typeof(ExecutionType), taskDto.ExecutionType, true, out _);
+                    var isLabelTypeValid = Enum.TryParse(typeof(LabelType), taskDto.LabelType, true, out _);
+                    
+                    if (!isExecutionTypeValid || !isLabelTypeValid)
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
                     }
-
+                    
                     validTasks.Add(taskDto);
                 }
 
-                projectDto.Tasks = validTasks;
+                projectDto.Tasks = validTasks.ToList();
                 mappedProjects.Add(Mapper.Instance.Map<Project>(projectDto));
                 sb.AppendLine(string.Format(SuccessfullyImportedProject, projectDto.Name, projectDto.Tasks.Count));
 
@@ -155,7 +157,7 @@
         {
             var employeesDto = JsonConvert.DeserializeObject<IEnumerable<EmployeeInputDto>>(jsonString);
             var sb = new StringBuilder();
-            var mappedEmployees = new List<Employee>();
+            var mappedEmployees = new HashSet<Employee>();
 
             foreach (var employeeDto in employeesDto)
             {
@@ -167,18 +169,18 @@
 
                 var validTasks = new HashSet<int>();
 
-                foreach (var task in employeeDto.Tasks)
+                foreach (var taskId in employeeDto.Tasks.Distinct())
                 {
-                    var tasks = context.Tasks.Select(t => t.Id).ToList();
+                    var tasksIds = context.Tasks.Select(t => t.Id).ToHashSet();
 
-                    if (!tasks.Contains(task))
+                    if (!tasksIds.Contains(taskId))
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
                     }
                     else
                     {
-                        validTasks.Add(task);
+                        validTasks.Add(taskId);
                     }
                 }
 
