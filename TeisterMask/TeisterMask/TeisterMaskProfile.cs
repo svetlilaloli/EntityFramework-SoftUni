@@ -6,6 +6,7 @@
     using System.Linq;
     using TeisterMask.Data.Models;
     using TeisterMask.Data.Models.Enums;
+    using TeisterMask.DataProcessor.ExportDto;
     using TeisterMask.DataProcessor.ImportDto;
 
     public class TeisterMaskProfile : Profile
@@ -24,8 +25,6 @@
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(p => p.DueDate != null ? DateTime.ParseExact(p.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture) : (DateTime?)null));
             CreateMap<EmployeeInputDto, Employee>()
                 .ForMember(dest => dest.EmployeesTasks, opt => opt.MapFrom(e => e.Tasks.Select(t => new EmployeeTask { TaskId = t})));
-            
-            // export
         }
     }
 }
