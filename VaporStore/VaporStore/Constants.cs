@@ -4,7 +4,7 @@
     {
         // Game
         public const double MIN_PRICE = 0;
-        public const double MAX_PRICE = (double)decimal.MaxValue;
+        public const double MAX_PRICE = double.MaxValue;
         // User
         public const int USERNAME_MIN_LENGTH = 3;
         public const int USERNAME_MAX_LENGTH = 20;

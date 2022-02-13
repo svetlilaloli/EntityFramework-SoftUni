@@ -19,7 +19,7 @@
 
 			var projectDir = GetProjectDirectory();
 
-			//ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+			ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 			//ExportEntities(context, projectDir + @"ImportResults/");
 
 			using (var transaction = context.Database.BeginTransaction())
@@ -40,14 +40,14 @@
 		private static void ImportEntities(VaporStoreDbContext context, string baseDir, string exportDir)
 		{
 			var games = Deserializer.ImportGames(context, File.ReadAllText(baseDir + "games.json"));
-			PrintAndExportEntityToFile(games, exportDir + "ImportGames.txt");
+			PrintAndExportEntityToFile(games, exportDir + "ActualResult-ImportGames.txt");
 
-			var users = Deserializer.ImportUsers(context, File.ReadAllText(baseDir + "users.json"));
-			PrintAndExportEntityToFile(users, exportDir + "ImportUsers.txt");
+            var users = Deserializer.ImportUsers(context, File.ReadAllText(baseDir + "users.json"));
+            PrintAndExportEntityToFile(users, exportDir + "ActualResult-ImportUsers.txt");
 
-			var purchases = Deserializer.ImportPurchases(context, File.ReadAllText(baseDir + "purchases.xml"));
-			PrintAndExportEntityToFile(purchases, exportDir + "ImportPurchases.txt");
-		}
+            var purchases = Deserializer.ImportPurchases(context, File.ReadAllText(baseDir + "purchases.xml"));
+            PrintAndExportEntityToFile(purchases, exportDir + "ActualResult-ImportPurchases.txt");
+        }
 
 		private static void ResetDatabase(DbContext context, bool shouldDropDatabase = false)
 		{
