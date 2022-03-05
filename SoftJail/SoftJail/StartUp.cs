@@ -18,7 +18,7 @@
 
             var projectDir = GetProjectDirectory();
 
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
             //ExportEntities(context, projectDir + @"ExportResults/");
 
             using (var transaction = context.Database.BeginTransaction())
@@ -39,7 +39,9 @@
                     File.ReadAllText(baseDir + "ImportPrisonersMails.json"));
             PrintAndExportEntityToFile(prisonersMails, exportDir + "Actual Result - ImportPrisonersMails.txt");
 
-            var officersPrisoners = DataProcessor.Deserializer.ImportOfficersPrisoners(context, File.ReadAllText(baseDir + "ImportOfficersPrisoners.xml"));
+            var officersPrisoners = 
+                DataProcessor.Deserializer.ImportOfficersPrisoners(context, 
+                    File.ReadAllText(baseDir + "ImportOfficersPrisoners.xml"));
             PrintAndExportEntityToFile(officersPrisoners, exportDir + "Actual Result - ImportOfficersPrisoners.txt");
         }
 
