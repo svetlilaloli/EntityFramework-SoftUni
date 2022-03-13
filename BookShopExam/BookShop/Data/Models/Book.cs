@@ -18,9 +18,9 @@ namespace BookShop.Data.Models
         [Required]
         public Genre Genre { get; set; }
         [Range((double)Constants.MinPrice, (double)Constants.MaxPrice)]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         [Range(Constants.MinPages, Constants.MaxPages)]
-        public int Pages { get; set; }
+        public int? Pages { get; set; }
         [Required]
         public DateTime PublishedOn { get; set; }
         public virtual ICollection<AuthorBook> AuthorsBooks { get; set; }
