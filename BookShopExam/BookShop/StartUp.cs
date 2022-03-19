@@ -20,7 +20,7 @@
 
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 
-            //ExportEntities(context, projectDir + @"ExportResults/");
+            ExportEntities(context, projectDir + @"ExportResults/");
 
             using (var transaction = context.Database.BeginTransaction())
             {
@@ -46,15 +46,15 @@
         private static void ExportEntities(BookShopContext context, string exportDir)
         {
 
-            var exportProcrastinatedProjects = DataProcessor.Serializer.ExportMostCraziestAuthors(context);
-            Console.WriteLine(exportProcrastinatedProjects);
-            File.WriteAllText(exportDir + "Actual Result - ExportMostCraziestAuthors.json", exportProcrastinatedProjects);
+            var exportAuthors = DataProcessor.Serializer.ExportMostCraziestAuthors(context);
+            Console.WriteLine(exportAuthors);
+            File.WriteAllText(exportDir + "Actual Result - ExportMostCraziestAuthors.json", exportAuthors);
 
             DateTime dateTime = DateTime.ParseExact("25/01/2017", "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            var exportTopMovies = DataProcessor.Serializer.ExportOldestBooks(context, dateTime);
-            Console.WriteLine(exportTopMovies);
-            File.WriteAllText(exportDir + "Actual Result - ExportOldestBooks.xml", exportTopMovies);
+            var exportOldestBooks = DataProcessor.Serializer.ExportOldestBooks(context, dateTime);
+            Console.WriteLine(exportOldestBooks);
+            File.WriteAllText(exportDir + "Actual Result - ExportOldestBooks.xml", exportOldestBooks);
         }
 
         private static void ResetDatabase(BookShopContext context, bool shouldDropDatabase = false)
